@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { BookContext } from '../contexts/BookContext'
+import { BooksContext } from '../../contexts'
 
 const BookDetails = ({ book }) => {
-  const { dispatch } = useContext(BookContext)
+  const { dispatch } = useContext(BooksContext)
   return (
     <li onClick={() => dispatch({ type: 'REMOVE_BOOK', id: book.id })}> {/* eslint-disable-line */}
       <div className="title">{book.title}</div>

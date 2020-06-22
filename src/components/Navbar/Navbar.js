@@ -1,16 +1,17 @@
 import React, { useContext } from 'react'
-import { BookContext } from '../contexts/BookContext'
+import { BooksContext } from '../../contexts'
 
 const Navbar = () => {
-  const { books } = useContext(BookContext)
+  const { books } = useContext(BooksContext)
   return (
     <div className="navbar">
       <h1>Ninja Reading List</h1>
       <p>
         Currently you have
+        {' '}
         {books.length}
         {' '}
-        books to get through...
+        book(s) to get through...
       </p>
     </div>
   )
