@@ -5,9 +5,12 @@ import { BooksContext, LocalThemeContext } from '../../contexts'
 import { NavbarWrapper } from './Navbar.styled'
 
 const Navbar = () => {
-  const { books } = useContext(BooksContext)
+  const { state } = useContext(BooksContext)
+  const { books } = state
   const { toggleTheme, light } = useContext(LocalThemeContext)
+
   console.log('render Navbar') // eslint-disable-line
+
   return (
     <NavbarWrapper>
       <span>

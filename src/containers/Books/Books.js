@@ -1,25 +1,19 @@
-import React, { useReducer, useEffect } from 'react'
+import React from 'react'
 import Navbar from '../../components/Navbar'
 import BookList from '../../components/BookList'
 import NewBookForm from '../../components/NewBookForm'
-import { booksReducer } from './booksReducer'
-import { BooksContext } from '../../contexts'
+import BookContextProvider from '../../contexts/BooksContext'
 
-const BookContextProvider = () => {
-  const [books, dispatch] = useReducer(booksReducer, [], () => {
-    const localData = localStorage.getItem('books')
-    return localData ? JSON.parse(localData) : []
-  })
-  useEffect(() => {
-    localStorage.setItem('books', JSON.stringify(books))
-  }, [books])
-  return (
-    <BooksContext.Provider value={{ books, dispatch }}>
+const Books = () => (
+  <>
+    <BookContextProvider>
       <Navbar />
       <BookList />
       <NewBookForm />
-    </BooksContext.Provider>
-  )
-}
+    </BookContextProvider>
+  </>
+)
 
-export default BookContextProvider
+Books.propTypes = {}
+
+export default Books

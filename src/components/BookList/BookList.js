@@ -4,8 +4,11 @@ import { BooksContext } from '../../contexts'
 import { BookListWrapper } from './BookList.styled'
 
 const BookList = () => {
-  const { books } = useContext(BooksContext)
+  const { state } = useContext(BooksContext)
+  const { books } = state
+
   console.log('render BookList') // eslint-disable-line
+
   return books.length > 0
     ? (
       <BookListWrapper>

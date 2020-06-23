@@ -1,3 +1,4 @@
 export const ACTION_TYPES = {
-  OPEN_LOGIN: 'OPEN_LOGIN',
+  ADD_BOOK: 'ADD_BOOK',
+  REMOVE_BOOK: 'REMOVE_BOOK',
 }

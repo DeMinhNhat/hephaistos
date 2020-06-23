@@ -4,7 +4,9 @@ import { BooksContext } from '../../contexts'
 
 const BookDetail = ({ book }) => {
   const { dispatch } = useContext(BooksContext)
+
   console.log('render BookDetail') // eslint-disable-line
+
   return (
     <>
       <li onClick={() => dispatch({ type: 'REMOVE_BOOK', id: book.id })}>  {/* eslint-disable-line */}
