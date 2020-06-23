@@ -18,7 +18,7 @@ const BooksContextProvider = props => {
 }
 
 BooksContextProvider.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.array,
 }
 
 export default BooksContextProvider

@@ -1,0 +1,14 @@
+{
+  "common.home": "Home",
+  "common.network": "Network",
+  "common.notNow": "Not now",
+  "common.page404": 404,
+  "common.page404NotFound": "Page not found",
+  "common.goBackHome": "Go back home",
+  "common.readingList": "Reading list",
+  "common.bookTitle": "Title",
+  "common.bookAuthor": "Author",
+  "common.addBook": "Add book",
+  "common.noBooks": "No books to read. Hello free time:)",
+  "common.noBooksDes": "Currently you have {len} book(s) to get through..."
+}

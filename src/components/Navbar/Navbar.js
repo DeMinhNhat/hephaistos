@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { FormattedMessage } from 'react-intl'
 import sun from '../../assets/sun.svg'
 import moon from '../../assets/moon.svg'
 import { BooksContext, LocalThemeContext } from '../../contexts'
@@ -15,19 +16,22 @@ const Navbar = () => {
     <NavbarWrapper>
       <span>
         {light ? (
-          <img src={sun} onClick={e => toggleTheme()} /> // eslint-disable-line
+          <img src={sun} onClick={(e) => toggleTheme()} /> // eslint-disable-line
         ) : (
-          <img src={moon} onClick={e => toggleTheme()} /> // eslint-disable-line
-
+          <img src={moon} onClick={(e) => toggleTheme()} /> // eslint-disable-line
         )}
       </span>
-      <h1>Ninja Reading List</h1>
+      <h1>
+        <FormattedMessage
+          id="common.readingList"
+          defaultMessage="Ninja Reading List"
+        />
+      </h1>
       <p>
-        Currently you have
-        {' '}
-        {books.length}
-        {' '}
-        book(s) to get through...
+        <FormattedMessage
+          id="common.noBooksDes"
+          values={{ len: books.length }}
+        />
       </p>
     </NavbarWrapper>
   )

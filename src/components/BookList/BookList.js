@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { FormattedMessage } from 'react-intl'
 import BookDetail from '../BookDetail'
 import { BooksContext } from '../../contexts'
 import { BookListWrapper } from './BookList.styled'
@@ -17,7 +18,11 @@ const BookList = () => {
         </ul>
       </BookListWrapper>
     )
-    : (<BookListWrapper>No books to read. Hello free time:)</BookListWrapper>)
+    : (
+      <BookListWrapper>
+        <FormattedMessage id="common.noBooks" defaultMessage="No books to read. Hello free time:)" />
+      </BookListWrapper>
+    )
 }
 
 export default BookList
