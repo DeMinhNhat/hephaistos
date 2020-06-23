@@ -2,12 +2,14 @@ import React, { useContext } from 'react'
 import sun from '../../assets/sun.svg'
 import moon from '../../assets/moon.svg'
 import { BooksContext, LocalThemeContext } from '../../contexts'
+import { NavbarWrapper } from './Navbar.styled'
 
 const Navbar = () => {
   const { books } = useContext(BooksContext)
   const { toggleTheme, light } = useContext(LocalThemeContext)
+  console.log('render Navbar') // eslint-disable-line
   return (
-    <div className="navbar">
+    <NavbarWrapper>
       <span>
         {light ? (
           <img src={sun} onClick={e => toggleTheme()} /> // eslint-disable-line
@@ -24,7 +26,7 @@ const Navbar = () => {
         {' '}
         book(s) to get through...
       </p>
-    </div>
+    </NavbarWrapper>
   )
 }
 

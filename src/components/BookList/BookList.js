@@ -1,18 +1,20 @@
 import React, { useContext } from 'react'
 import BookDetail from '../BookDetail'
 import { BooksContext } from '../../contexts'
+import { BookListWrapper } from './BookList.styled'
 
 const BookList = () => {
   const { books } = useContext(BooksContext)
+  console.log('render BookList') // eslint-disable-line
   return books.length > 0
     ? (
-      <div className="book-list">
+      <BookListWrapper>
         <ul>
           {books.map(book => (<BookDetail book={book} key={book.id} />))}
         </ul>
-      </div>
+      </BookListWrapper>
     )
-    : (<div className="empty">No books to read. Hello free time:)</div>)
+    : (<BookListWrapper>No books to read. Hello free time:)</BookListWrapper>)
 }
 
 export default BookList

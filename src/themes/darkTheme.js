@@ -5,7 +5,8 @@ export const darkTheme = {
     lightBlue: '#AFDBD2',
     onyx: '#36313D',
   },
-  color: '#282C35',
+  background: '#282C35',
+  color: '#FFF',
   fonts: ['sans-serif', 'Roboto'],
   fontSizes: {
     small: '1em',

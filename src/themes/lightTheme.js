@@ -5,7 +5,8 @@ export const lightTheme = {
     lightBlue: '#AFDBD2',
     onyx: '#36313D',
   },
-  color: '#FFFFFF',
+  background: '#FFFFFF',
+  color: '#282C35',
   fonts: ['sans-serif', 'Roboto'],
   fontSizes: {
     small: '1em',

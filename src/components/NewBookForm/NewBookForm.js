@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { BooksContext } from '../../contexts'
+import { NewBookFormWrapper } from './NewBookForm.styled'
 
 const NewBookForm = () => {
   const { dispatch } = useContext(BooksContext)
@@ -13,8 +14,10 @@ const NewBookForm = () => {
     setAuthor('')
   }
 
+  console.log('render NewBookForm') // eslint-disable-line
+
   return (
-    <form onSubmit={handleSubmit}>
+    <NewBookFormWrapper onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="book title"
@@ -30,7 +33,7 @@ const NewBookForm = () => {
         required
       />
       <input type="submit" value="add book" />
-    </form>
+    </NewBookFormWrapper>
   )
 }
 
