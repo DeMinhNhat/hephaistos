@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import { BooksContext } from '../../contexts'
 import { BookDetailWrapper } from './BookDetail.styled'
 
-const BookDetails = ({ book }) => {
+const BookDetail = ({ book }) => {
   const { dispatch } = useContext(BooksContext)
+  console.log('render BookDetail')
   return (
     <BookDetailWrapper>
       <li onClick={() => dispatch({ type: 'REMOVE_BOOK', id: book.id })}> {/* eslint-disable-line */}
@@ -15,8 +16,8 @@ const BookDetails = ({ book }) => {
   )
 }
 
-BookDetails.propTypes = {
+BookDetail.propTypes = {
   book: PropTypes.object,
 }
 
-export default BookDetails
+export default BookDetail

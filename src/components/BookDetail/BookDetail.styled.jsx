@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const BookDetailWrapper = styled.div`
   li {
-    background: #6d3d6d;
+    background: ${({ theme }) => theme.color};
     border-radius: 4px;
     padding: 10px;
     cursor: pointer;

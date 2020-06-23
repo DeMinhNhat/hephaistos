@@ -1,7 +1,7 @@
 module.exports = {
   parser: 'babel-eslint',
   extends: ['airbnb'],
-  plugins: ['react', 'jsx-a11y'],
+  plugins: ['react', 'jsx-a11y', 'react-hooks'],
   env: {
     jest: true,
     browser: true,
@@ -76,6 +76,8 @@ module.exports = {
     'react/prop-types': ['error'],
     semi: ['error', 'never'],
     'object-curly-newline': 0,
+    'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+    'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
   },
   settings: {
     // 'import/resolver': {

@@ -1,3 +1,9 @@
 import { createContext } from 'react'
 
-export const BooksContext = createContext()
+const LocalThemeContext = createContext()
+const BooksContext = createContext()
+
+export {
+  LocalThemeContext,
+  BooksContext,
+}
