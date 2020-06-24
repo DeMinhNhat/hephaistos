@@ -12,10 +12,7 @@ const localeList = [
   { name: 'English', code: 'en', lang: 'English' },
   { name: 'Việt Nam', code: 'vi', lang: 'Vietnamese' },
 ]
-const messages = {
-  vi: { ...vi },
-  en: { ...en },
-}
+const messages = { vi, en }
 
 function App() {
   const [currentLocale, setCurrentLocale] = useState(defaultLocale)
@@ -29,7 +26,7 @@ function App() {
     <Theme>
       <IntlProvider locale={currentLocale} messages={messages[currentLocale]}>
         <AppWrapper>
-          <select onChange={onChangeLanguage} defaultValue={currentLocale}>
+          <select onChange={onChangeLanguage} value={currentLocale}>
             {localeList.map(locale => (
               <option key={locale.code} value={locale.code}>
                 {locale.name}

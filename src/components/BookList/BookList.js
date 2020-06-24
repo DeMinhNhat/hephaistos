@@ -8,21 +8,24 @@ const BookList = () => {
   const { state } = useContext(BooksContext)
   const { books } = state
 
-  console.log('render BookList') // eslint-disable-line
+  console.log('render BookList'); // eslint-disable-line
 
-  return books.length > 0
-    ? (
-      <BookListWrapper>
-        <ul>
-          {books.map(book => (<BookDetail book={book} key={book.id} />))}
-        </ul>
-      </BookListWrapper>
-    )
-    : (
-      <BookListWrapper>
-        <FormattedMessage id="common.noBooks" defaultMessage="No books to read. Hello free time:)" />
-      </BookListWrapper>
-    )
+  return books.length > 0 ? (
+    <BookListWrapper>
+      <ul>
+        {books.map(book => (
+          <BookDetail book={book} key={book.id} />
+        ))}
+      </ul>
+    </BookListWrapper>
+  ) : (
+    <BookListWrapper>
+      <FormattedMessage
+        id="common.noBooks"
+        defaultMessage="No books to read. Hello free time:)"
+      />
+    </BookListWrapper>
+  )
 }
 
 export default BookList

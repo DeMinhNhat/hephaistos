@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { ThemeProvider } from 'styled-components'
 import { darkTheme } from './themes/darkTheme'
 import { lightTheme } from './themes/lightTheme'
 import { LocalThemeContext } from './contexts'
 
-const ThemeContextProvider = ({ children }) => { // eslint-disable-line
+const ThemeContextProvider = ({ children }) => {
   const [light, setLight] = useState(true)
   const toggleTheme = () => setLight(!light)
 
@@ -15,6 +16,10 @@ const ThemeContextProvider = ({ children }) => { // eslint-disable-line
       </ThemeProvider>
     </LocalThemeContext.Provider>
   )
+}
+
+ThemeContextProvider.propTypes = {
+  children: PropTypes.array,
 }
 
 export default ThemeContextProvider

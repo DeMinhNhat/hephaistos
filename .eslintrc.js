@@ -16,6 +16,7 @@ module.exports = {
     },
   },
   rules: {
+    semi: ['error', 'never'],
     'prefer-const': [2, { destructuring: 'all' }],
     'arrow-parens': [2, 'as-needed'],
     'no-unused-expressions': 0,
@@ -74,16 +75,8 @@ module.exports = {
     'prettier/prettier': 0,
     'linebreak-style': 0,
     'react/prop-types': ['error'],
-    semi: ['error', 'never'],
     'object-curly-newline': 0,
-    'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
-    'react-hooks/exhaustive-deps': 'warn', // Checks effect dependencies
-  },
-  settings: {
-    // 'import/resolver': {
-    //   webpack: {
-    //     config: './internals/webpack/webpack.prod.babel.js',
-    //   },
-    // },
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
 };
