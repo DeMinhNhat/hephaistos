@@ -1,11 +1,11 @@
-// require("@babel/polyfill")
 const webpack = require('webpack')
 const path = require('path')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
 const WebpackBar = require('webpackbar')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const APP_DIR = path.resolve(__dirname, 'src')
 
 function getDirectoryPathForBuildingResource() {
@@ -15,6 +15,44 @@ function getDirectoryPathForBuildingResource() {
 }
 
 const VENDOR_LIBS = ['react', 'react-dom', 'react-router']
+
+const cleanOptions = {
+  // root: getDirectoryPathForBuildingResource(),
+  exclude: ['index.html'],
+  dry: false,
+  verbose: true,
+  cleanStaleWebpackAssets: true,
+  protectWebpackAssets: true,
+  cleanOnceBeforeBuildPatterns: ['**/*', '!static-files*'],
+  cleanAfterEveryBuildPatterns: ['static*.*', '!static1.js'],
+  dangerouslyAllowCleanPatternsOutsideProject: true,
+}
+
+// the compress options to use
+const compressOptions = {
+  algorithm: 'gzip',
+  test: /\.js$|\.css$|\.html$/,
+  threshold: 10240,
+  minRatio: 0.8,
+}
+
+// the configuration options to use for HTMLWebpackPlugin
+const configurationOptions = {
+  inject: true,
+  template: 'public/index.ejs',
+  minify: {
+    removeComments: true,
+    collapseWhitespace: true,
+    removeRedundantAttributes: true,
+    useShortDoctype: true,
+    removeEmptyAttributes: true,
+    removeStyleLinkTypeAttributes: true,
+    keepClosingSlash: true,
+    minifyJS: true,
+    minifyCSS: true,
+    minifyURLs: true,
+  },
+}
 
 const WebpackConfig = {
   context: path.resolve(__dirname),
@@ -29,53 +67,19 @@ const WebpackConfig = {
   },
   optimization: {
     minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        terserOptions: {
-          warnings: false,
-          compress: {
-            comparisons: false,
-          },
-          parse: {},
-          mangle: true,
-          output: {
-            comments: false,
-            ascii_only: true,
-          },
-        },
-        parallel: true,
-        cache: true,
-        sourceMap: true,
-      }),
-    ],
     sideEffects: true,
     concatenateModules: true,
+    runtimeChunk: false,
     splitChunks: {
-      chunks: 'all',
-      minSize: 30000,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      name: true,
       cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
-          chunks: 'all',
-        },
-        main: {
-          chunks: 'all',
-          minChunks: 2,
-          reuseExistingChunk: true,
-          enforce: true,
-        },
+        default: false,
       },
     },
-    runtimeChunk: true,
   },
   output: {
     path: getDirectoryPathForBuildingResource(), // output directory
-    filename: 'bundle.js',
+    filename: 'scripts/[name].[chunkhash].js',
+    chunkFilename: 'scripts/[name].[chunkhash].chunk.js',
   },
   devtool: 'source-map',
   watchOptions: {
@@ -108,7 +112,10 @@ const WebpackConfig = {
         use: [
           'style-loader',
           { loader: 'css-loader', options: { importLoaders: 1 } },
-          { loader: 'postcss-loader', options: { parser: 'sugarss', exec: true } },
+          {
+            loader: 'postcss-loader',
+            options: { parser: 'sugarss', exec: true },
+          },
         ],
       },
       {
@@ -167,36 +174,14 @@ const WebpackConfig = {
 
   // load all these plugins
   plugins: [
+    new BundleAnalyzerPlugin(),
     new WebpackBar(),
-    new CleanWebpackPlugin(),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-    }),
-    new MiniCssExtractPlugin({
-      // both options are optional
-      filename: 'styles-[hash:8].css',
-    }),
-    new HTMLWebpackPlugin({
-      inject: true,
-      template: 'public/index.ejs',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
-      },
-    }),
-
-    process.env.NODE_ENV
-      ? () => {}
-      : new webpack.optimize.AggressiveMergingPlugin(),
+    new CleanWebpackPlugin(cleanOptions),
+    new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }),
+    new MiniCssExtractPlugin({ filename: 'styles-[hash:8].css' }),
+    new HTMLWebpackPlugin(configurationOptions),
+    new CompressionPlugin(compressOptions),
+    new webpack.optimize.AggressiveMergingPlugin(),
   ],
 
   // this will resolve the path in the components we will write
