@@ -1,11 +1,13 @@
 import React, { Suspense, useState } from 'react'
 import { Redirect, Route, Switch, BrowserRouter } from 'react-router-dom'
-import styled from 'styled-components'
+import { ApolloProvider } from '@apollo/react-hooks'
 import { IntlProvider } from 'react-intl'
+import { client } from './apolloClient'
 import Theme from './Theme'
 import routes from './routes'
 import vi from './locales/vi.json'
 import en from './locales/en.json'
+import { AppWrapper } from './App.styled'
 
 const defaultLocale = localStorage.locale ? localStorage.locale : 'vi'
 const localeList = [
@@ -24,46 +26,37 @@ function App() {
 
   return (
     <Theme>
-      <IntlProvider locale={currentLocale} messages={messages[currentLocale]}>
-        <AppWrapper>
-          <select onChange={onChangeLanguage} value={currentLocale}>
-            {localeList.map(locale => (
-              <option key={locale.code} value={locale.code}>
-                {locale.name}
-              </option>
-            ))}
-          </select>
-          <BrowserRouter>
-            <Suspense fallback={<div>Hello world...</div>}>
-              <Switch>
-                {routes.map(route => route.component ? (
-                  <Route
-                    key={route.path}
-                    path={route.path}
-                    exact={route.exact}
-                    name={route.name}
-                    render={() => <route.component />}
-                  />
-                ) : null,)}
-                <Redirect to="/404" />
-              </Switch>
-            </Suspense>
-          </BrowserRouter>
-        </AppWrapper>
-      </IntlProvider>
+      <ApolloProvider client={client}>
+        <IntlProvider locale={currentLocale} messages={messages[currentLocale]}>
+          <AppWrapper>
+            <select onChange={onChangeLanguage} value={currentLocale}>
+              {localeList.map(locale => (
+                <option key={locale.code} value={locale.code}>
+                  {locale.name}
+                </option>
+              ))}
+            </select>
+            <BrowserRouter>
+              <Suspense fallback={<div>Hello world...</div>}>
+                <Switch>
+                  {routes.map(route => route.component ? (
+                    <Route
+                      key={route.path}
+                      path={route.path}
+                      exact={route.exact}
+                      name={route.name}
+                      render={() => <route.component />}
+                    />
+                  ) : null,)}
+                  <Redirect to="/404" />
+                </Switch>
+              </Suspense>
+            </BrowserRouter>
+          </AppWrapper>
+        </IntlProvider>
+      </ApolloProvider>
     </Theme>
   )
 }
 
 export default App
-
-const AppWrapper = styled.div`
-  background: ${({ theme }) => theme.background};
-  margin: 20px auto;
-  width: 90%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-`

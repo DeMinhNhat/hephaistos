@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { FormattedMessage } from 'react-intl'
-import sun from '../../assets/sun.svg'
-import moon from '../../assets/moon.svg'
+import sun from '../../assets/images/sun.svg'
+import moon from '../../assets/images/moon.svg'
 import { BooksContext, LocalThemeContext } from '../../contexts'
 import { NavbarWrapper } from './Navbar.styled'
 

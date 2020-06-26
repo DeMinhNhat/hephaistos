@@ -81,6 +81,15 @@ const WebpackConfig = {
     filename: 'scripts/[name].[chunkhash].js',
     chunkFilename: 'scripts/[name].[chunkhash].chunk.js',
   },
+  // devServer: {
+  //   contentBase: getDirectoryPathForBuildingResource(),
+  //   port: 3000,
+  //   host: 'localhost',
+  //   stats: 'errors-only',
+  //   watchContentBase: true,
+  //   historyApiFallback: true,
+  // },
+
   devtool: 'source-map',
   watchOptions: {
     aggregateTimeout: 300,
@@ -106,6 +115,11 @@ const WebpackConfig = {
             'transform-class-properties',
           ],
         },
+      },
+      {
+        test: /\.(graphql|gql)$/,
+        loader: 'graphql-tag/loader',
+        exclude: [/node_modules/],
       },
       {
         test: /\.style.js$/,

@@ -19,7 +19,7 @@ const ThemeContextProvider = ({ children }) => {
 }
 
 ThemeContextProvider.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.object,
 }
 
 export default ThemeContextProvider
