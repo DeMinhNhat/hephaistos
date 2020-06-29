@@ -6,7 +6,7 @@
   "common.page404NotFound": "Không tìm thấy trang",
   "common.goBackHome": "Trở về trang chủ",
   "common.readingList": "Danh sách sách đọc",
-  "common.bookTitle": "Tên sách",
+  "common.bookName": "Tên sách",
   "common.bookAuthor": "Tác giả",
   "common.addBook": "Thêm sách",
   "common.noBooks": "Không còn sách, thời gian rảnh tới rồi :)",

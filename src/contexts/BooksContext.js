@@ -6,10 +6,12 @@ export const BooksContext = createContext()
 
 const initialStore = {
   books: [],
+  book: {},
 }
 
 const BooksContextProvider = props => {
   const [state, dispatch] = useReducer(booksReducer, initialStore)
+  console.log('render BooksContextProvider') // eslint-disable-line
   return (
     <BooksContext.Provider value={{ state, dispatch }}>
       {props.children}

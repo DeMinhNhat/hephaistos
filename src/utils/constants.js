@@ -1,4 +1,5 @@
 export const ACTION_TYPES = {
   ADD_BOOK: 'ADD_BOOK',
-  REMOVE_BOOK: 'REMOVE_BOOK',
+  GET_BOOKS: 'GET_BOOKS',
+  GET_BOOK: 'GET_BOOK',
 }

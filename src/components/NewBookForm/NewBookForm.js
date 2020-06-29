@@ -7,13 +7,13 @@ import { NewBookFormWrapper } from './NewBookForm.styled'
 const NewBookForm = () => {
   const intl = useIntl()
   const { dispatch } = useContext(BooksContext)
-  const [title, setTitle] = useState('')
+  const [name, setName] = useState('')
   const [author, setAuthor] = useState('')
 
   const handleSubmit = e => {
     e.preventDefault()
-    dispatch({ type: 'ADD_BOOK', book: { title, author } })
-    setTitle('')
+    dispatch({ type: 'ADD_BOOK', book: { name, author } })
+    setName('')
     setAuthor('')
   }
 
@@ -23,9 +23,9 @@ const NewBookForm = () => {
     <NewBookFormWrapper onSubmit={handleSubmit}>
       <input
         type="text"
-        placeholder={intl.formatMessage({ id: 'common.bookTitle' })}
-        value={title}
-        onChange={e => setTitle(e.target.value)}
+        placeholder={intl.formatMessage({ id: 'common.bookName' })}
+        value={name}
+        onChange={e => setName(e.target.value)}
         required
       />
       <input

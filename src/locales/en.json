@@ -6,7 +6,7 @@
   "common.page404NotFound": "Page not found",
   "common.goBackHome": "Go back home",
   "common.readingList": "Reading list",
-  "common.bookTitle": "Title",
+  "common.bookName": "Name",
   "common.bookAuthor": "Author",
   "common.addBook": "Add book",
   "common.noBooks": "No books to read. Hello free time:)",

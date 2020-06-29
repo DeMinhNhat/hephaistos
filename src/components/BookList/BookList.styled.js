@@ -25,7 +25,7 @@ export const BookListWrapper = styled.div`
     }
     li:hover {
       opacity: 0.7;
-      text-decoration: line-through;
+      /* text-decoration: line-through; */
     }
   }
 `

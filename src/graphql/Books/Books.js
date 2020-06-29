@@ -4,12 +4,10 @@ export const GET_BOOKS = gql`
   query {
     books {
       id
-      title
-      status
       name
-      genre
+      genres
       author {
-        age
+        phone
         name
       }
     }
@@ -19,13 +17,11 @@ export const GET_BOOKS = gql`
 export const GET_BOOK = gql`
   query book($bookId: ID!) {
     book(bookId: $bookId) {
-      title
-      status
       name
-      genre
+      genres
       author {
         id
-        age
+        phone
         name
       }
     }
@@ -34,25 +30,14 @@ export const GET_BOOK = gql`
 
 export const ADD_BOOK = gql`
   mutation addBook(
-    $title: String!
-    $genre: String!
+    $genres: [String!]
     $name: String!
     $authorId: ID
   ) {
-    addBook(title: $title, genre: $genre, name: $name, authorId: $authorId) {
+    addBook(genres: $genres, name: $name, authorId: $authorId) {
       id
-      title
-      genre
+      genres
       name
-      status
-    }
-  }
-`
-
-export const DELETE_BOOK = gql`
-  mutation deleteBook($bookId: ID!) {
-    deleteBook(bookId: $bookId) {
-      message
     }
   }
 `
@@ -61,34 +46,12 @@ export const SUBSCRIPTIONS_ADD_BOOK = gql`
   subscription autoAddBook {
     autoAddBook {
       id
-      title
-      genre
+      genres
       name
-      status
       author {
-        age
+        phone
         name
       }
-    }
-  }
-`
-
-export const SUBSCRIPTIONS_REMOVE_BOOK = gql`
-  subscription autoRemoveBook {
-    autoRemoveBook {
-      id
-    }
-  }
-`
-
-export const SUBSCRIPTIONS_UPDATE_BOOK = gql`
-  subscription autoUpdateBook {
-    autoUpdateBook {
-      id
-      title
-      genre
-      name
-      status
     }
   }
 `
